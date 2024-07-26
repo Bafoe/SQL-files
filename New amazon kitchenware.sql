@@ -1,3 +1,6 @@
+
+--These are queries to analyze amazon kitchenware products
+
 alter table sheet1
 drop column description
 

@@ -1,7 +1,10 @@
 select *
 from study_performance
 where math_score = 100
-------------------------------------------------------
+
+
+---------These are queries to know the insight of the impact of various fafctors on students during exams
+
 
 -- Avg scores per gender --
 
@@ -48,11 +51,11 @@ group by parental_level_of_education
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 
 
--- test preparation impact --
+-- test preparation impact -- This is know how students were affected by their prepartion. That is those were able to complete or didnt complete(none)
 
 select gender, test_preparation_course, avg(math_score) as math_score, avg(writing_score) as writing_score, avg(reading_score) as reading_score,
 count(case 
-			when gender = 'male' and test_preparation_course = 'completed' then 1     -- is a string, partition by couldn't count them individually.
+			when gender = 'male' and test_preparation_course = 'completed' then 1     -- is a string, so partition by couldn't count them individually.
 			when gender = 'male' and test_preparation_course = 'none' then 1			-- hence i represented them with 1 for count to count all the once							
 			when gender = 'female' and test_preparation_course = 'completed' then 1
 			when gender = 'female' and test_preparation_course = 'none' then 1
@@ -62,7 +65,7 @@ group by test_preparation_course, gender
 --------------------------------------------------------------------------------------------------------------------------------------------------
 
 
--- top scorers and number of people
+-- top scorers and number of people.  This is to know more insight about individuals who took the various exams
 
 		--Math scolars--
 select distinct (math_score), gender, race_ethnicity, count(math_score) NumOfStudent
